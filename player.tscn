@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bqft57hi36kkm"]
+[gd_scene load_steps=10 format=3 uid="uid://bqft57hi36kkm"]
 
 [ext_resource type="Texture2D" uid="uid://bytk6hc2ustd6" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_climb_a.png" id="1_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://b16yn21slnn8b" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_climb_b.png" id="2_dw050"]
@@ -7,6 +7,21 @@
 [ext_resource type="Texture2D" uid="uid://7tq1jq1eydd3" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_front.png" id="5_nvl01"]
 [ext_resource type="Texture2D" uid="uid://bq0btx7xejxq3" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_walk_a.png" id="6_ivps1"]
 [ext_resource type="Texture2D" uid="uid://xsvfhgf4nc85" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_walk_b.png" id="7_urp6f"]
+
+[sub_resource type="GDScript" id="GDScript_1jxqw"]
+script/source = "extends CharacterBody2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	var screen_size = get_viewport_rect().size
+	$Marker2D
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bwjto"]
 animations = [{
@@ -58,6 +73,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D"]
+script = SubResource("GDScript_1jxqw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bwjto")
@@ -66,5 +82,3 @@ frame_progress = 0.71655256
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(39, 1, 33, 62, -32, 62, -38, 0, -26, -27, 1, -35, 26, -27)
-
-[node name="Marker2D" type="Marker2D" parent="."]

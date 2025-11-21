@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6ib7qo5ay6fu"]
+
+[ext_resource type="Texture2D" uid="uid://bn3lvssai1akv" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_a.png" id="1_wo8yk"]
+[ext_resource type="Texture2D" uid="uid://dswmqvwg1tua3" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_b.png" id="2_pf4n2"]
+[ext_resource type="Texture2D" uid="uid://nhouyrubvojl" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_rest.png" id="3_mfqmw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r25yk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wo8yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_pf4n2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_mfqmw")
+}],
+"loop": true,
+"name": &"bee_normal",
+"speed": 5.0
+}]
+
+[node name="BeeMob" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r25yk")
+animation = &"bee_normal"
+frame = 1
+frame_progress = 0.07838172
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(24, -24, 24, 24, -24, 24, -24, -24)

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch3pacbmgwmkw"]
+
+[ext_resource type="Texture2D" uid="uid://cvxdv3u4srwub" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_rest.png" id="1_fdya6"]
+[ext_resource type="Texture2D" uid="uid://dco2lr8cfgt7a" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_a.png" id="2_7jv6g"]
+[ext_resource type="Texture2D" uid="uid://dfvgy03o7x3mv" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_b.png" id="3_dope2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gqlo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_fdya6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7jv6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dope2")
+}],
+"loop": true,
+"name": &"mouse_normal",
+"speed": 5.0
+}]
+
+[node name="MouseMob" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2gqlo")
+animation = &"mouse_normal"
+frame_progress = 0.0608903
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(32, 0, 24, 32, -24, 32, -32, 16, -8, -16)

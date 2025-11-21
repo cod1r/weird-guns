@@ -1,108 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://6tovc863hj3j"]
+[gd_scene load_steps=2 format=3 uid="uid://6tovc863hj3j"]
 
-[ext_resource type="Texture2D" uid="uid://pdqnyp4o167k" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_a.png" id="1_2jhq6"]
 [ext_resource type="Script" uid="uid://dhmmx3uje5wvn" path="res://mobs.gd" id="1_swu6o"]
-[ext_resource type="Texture2D" uid="uid://bfqdu1hbjcglv" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_b.png" id="2_swu6o"]
-[ext_resource type="Texture2D" uid="uid://c5ho4yq2ocbb5" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_rest.png" id="3_psoy1"]
-[ext_resource type="Texture2D" uid="uid://bn3lvssai1akv" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_a.png" id="4_nam57"]
-[ext_resource type="Texture2D" uid="uid://dswmqvwg1tua3" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_b.png" id="5_7jagl"]
-[ext_resource type="Texture2D" uid="uid://nhouyrubvojl" path="res://assets/platform_pack/Sprites/Enemies/Default/bee_rest.png" id="6_48vjk"]
-[ext_resource type="Texture2D" uid="uid://cvxdv3u4srwub" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_rest.png" id="7_5vgwv"]
-[ext_resource type="Texture2D" uid="uid://dco2lr8cfgt7a" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_a.png" id="8_7k4ld"]
-[ext_resource type="Texture2D" uid="uid://dfvgy03o7x3mv" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_b.png" id="9_6uajh"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_1i423"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_2jhq6")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_swu6o")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_psoy1")
-}],
-"loop": true,
-"name": &"attack",
-"speed": 8.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_r25yk"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_nam57")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_7jagl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_48vjk")
-}],
-"loop": true,
-"name": &"bee_normal",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_2gqlo"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("7_5vgwv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_7k4ld")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_6uajh")
-}],
-"loop": true,
-"name": &"mouse_normal",
-"speed": 5.0
-}]
 
 [node name="Mob" type="Node2D"]
 script = ExtResource("1_swu6o")
 
-[node name="BarnacleMob" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BarnacleMob"]
-sprite_frames = SubResource("SpriteFrames_1i423")
-animation = &"attack"
-frame_progress = 0.41500804
-
-[node name="Area2D" type="Area2D" parent="BarnacleMob"]
-
-[node name="CollisionShape2D" type="CollisionPolygon2D" parent="BarnacleMob/Area2D"]
-position = Vector2(-2.3841858e-07, 0)
-scale = Vector2(1.6, 1)
-polygon = PackedVector2Array(15, 32, 8, -28, -8, -28, -15, 32)
-
-[node name="BeeMob" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BeeMob"]
-sprite_frames = SubResource("SpriteFrames_r25yk")
-animation = &"bee_normal"
-frame = 1
-frame_progress = 0.07838172
-
-[node name="Area2D" type="Area2D" parent="BeeMob"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="BeeMob/Area2D"]
-polygon = PackedVector2Array(24, -24, 24, 24, -24, 24, -24, -24)
-
-[node name="MouseMob" type="Node2D" parent="."]
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="MouseMob"]
-sprite_frames = SubResource("SpriteFrames_2gqlo")
-animation = &"mouse_normal"
-frame_progress = 0.0608903
-
-[node name="Area2D" type="Area2D" parent="MouseMob"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="MouseMob/Area2D"]
-polygon = PackedVector2Array(32, 0, 24, 32, -24, 32, -32, 16, -8, -16)
-
 [node name="MobSpawnTimer" type="Timer" parent="."]
-wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="MobSpawnTimer" to="." method="_on_mob_spawn_timer_timeout"]

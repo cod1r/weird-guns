@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://vgt4nl4c4rd3"]
+
+[ext_resource type="Texture2D" uid="uid://pdqnyp4o167k" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_a.png" id="1_f5yy0"]
+[ext_resource type="Texture2D" uid="uid://bfqdu1hbjcglv" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_b.png" id="2_kbc4w"]
+[ext_resource type="Texture2D" uid="uid://c5ho4yq2ocbb5" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_rest.png" id="3_wig3h"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1i423"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_f5yy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kbc4w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wig3h")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 8.0
+}]
+
+[node name="BarnacleMob" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1i423")
+animation = &"attack"
+frame_progress = 0.41500804
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(-2.3841858e-07, 0)
+scale = Vector2(1.6, 1)
+polygon = PackedVector2Array(15, 32, 8, -28, -8, -28, -15, 32)
