@@ -1,0 +1,70 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqft57hi36kkm"]
+
+[ext_resource type="Texture2D" uid="uid://bytk6hc2ustd6" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_climb_a.png" id="1_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://b16yn21slnn8b" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_climb_b.png" id="2_dw050"]
+[ext_resource type="Texture2D" uid="uid://dtv3k8ubnulv3" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_idle.png" id="3_b26j0"]
+[ext_resource type="Texture2D" uid="uid://1bxwl686hwti" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_jump.png" id="4_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://7tq1jq1eydd3" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_front.png" id="5_nvl01"]
+[ext_resource type="Texture2D" uid="uid://bq0btx7xejxq3" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_walk_a.png" id="6_ivps1"]
+[ext_resource type="Texture2D" uid="uid://xsvfhgf4nc85" path="res://assets/platform_pack/Sprites/Characters/Default/character_beige_walk_b.png" id="7_urp6f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwjto"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dw050")
+}],
+"loop": true,
+"name": &"character_climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_b26j0")
+}],
+"loop": true,
+"name": &"character_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_n7ghd")
+}],
+"loop": true,
+"name": &"character_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nvl01")
+}],
+"loop": true,
+"name": &"character_still_font",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_ivps1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_urp6f")
+}],
+"loop": true,
+"name": &"character_walk",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bwjto")
+animation = &"character_walk"
+frame_progress = 0.71655256
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(39, 1, 33, 62, -32, 62, -38, 0, -26, -27, 1, -35, 26, -27)
+
+[node name="Marker2D" type="Marker2D" parent="."]
