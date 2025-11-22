@@ -75,7 +75,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 script = SubResource("GDScript_1jxqw")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Body" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_bwjto")
 animation = &"character_walk"
 frame_progress = 0.71655256
