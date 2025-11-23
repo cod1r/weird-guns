@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxmd1uw2bum0h"]
+[gd_scene load_steps=3 format=3 uid="uid://dxmd1uw2bum0h"]
 
 [ext_resource type="Texture2D" uid="uid://bdyqtqsdd8ln4" path="res://assets/guns/Vector/sheet.svg" id="1_kw0bs"]
-[ext_resource type="Script" uid="uid://1n8ftgx8pcar" path="res://gun.gd" id="2_8iju2"]
-[ext_resource type="PackedScene" uid="uid://c55k6rfm8wxj5" path="res://bullet.tscn" id="3_7vd5q"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
 atlas = ExtResource("1_kw0bs")
@@ -11,5 +9,3 @@ region = Rect2(238.988, 1.1639996, 70.90094, 73.534)
 [node name="Gun" type="Sprite2D"]
 scale = Vector2(1.5, 1.5)
 texture = SubResource("AtlasTexture_b26j0")
-script = ExtResource("2_8iju2")
-bullet_scene = ExtResource("3_7vd5q")

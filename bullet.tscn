@@ -1,10 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://c55k6rfm8wxj5"]
+[gd_scene load_steps=3 format=3 uid="uid://c55k6rfm8wxj5"]
 
 [ext_resource type="Texture2D" uid="uid://b4vfhrce617ph" path="res://assets/guns/Tiles/laserPurple.png" id="1_ry4c3"]
-
-[sub_resource type="GDScript" id="GDScript_v7oki"]
-script/source = "extends Sprite2D
-"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7ghd"]
 radius = 5.333332
@@ -12,7 +8,6 @@ height = 34.661385
 
 [node name="Bullet" type="Sprite2D"]
 texture = ExtResource("1_ry4c3")
-script = SubResource("GDScript_v7oki")
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(1.3333334, -0.6666667)

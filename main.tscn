@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://cb3jhkkvnuse7"]
+[gd_scene load_steps=12 format=4 uid="uid://cb3jhkkvnuse7"]
 
 [ext_resource type="Script" uid="uid://cdsutw6mxfdix" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://t082opexjfou" path="res://tile_map_layer.tscn" id="1_ig7tw"]
@@ -9,6 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://c6ib7qo5ay6fu" path="res://bee_mob.tscn" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://c55k6rfm8wxj5" path="res://bullet.tscn" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://dxmd1uw2bum0h" path="res://gun.tscn" id="8_5vw27"]
+
+[sub_resource type="GDScript" id="GDScript_kek77"]
+script/source = "extends Sprite2D
+"
 
 [sub_resource type="Curve2D" id="Curve2D_1bvp3"]
 _data = {
@@ -31,11 +35,11 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAFAAAAAAAAAAEAAAAFAAAAAAAAAAIAAAAFAAA
 [node name="Player" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(90, 57)
 scale = Vector2(0.75, 0.75)
-script = null
 
 [node name="Gun" parent="Player" instance=ExtResource("8_5vw27")]
 position = Vector2(-120, -76)
 scale = Vector2(2, 2)
+script = SubResource("GDScript_kek77")
 
 [node name="PlayerPosition" type="Marker2D" parent="."]
 position = Vector2(416, 384)

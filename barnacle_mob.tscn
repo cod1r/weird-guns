@@ -31,6 +31,6 @@ frame_progress = 0.41500804
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Area2D"]
-position = Vector2(-2.3841858e-07, 0)
+position = Vector2(1, -2)
 scale = Vector2(1.6, 1)
-polygon = PackedVector2Array(15, 32, 8, -28, -8, -28, -15, 32)
+polygon = PackedVector2Array(-8.125, -23, 6.875, -23, 13.75, -19, 16.875, 34, -17.5, 34, -14.375, -17)

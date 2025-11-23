@@ -10,7 +10,7 @@ const mouse_mob_speed := 400
 const barnacle_mob_speed := 200
 const bee_mob_speed := 250
 var bullet_speed = 400
-var global_mobs: Array[Node2D] = []
+var global_mobs: Array[Dictionary] = []
 
 var bullets: Array[Dictionary] = []
 
@@ -23,7 +23,8 @@ func _ready() -> void:
 
 func spawn_bullet(trajectory: Vector2) -> void:
 	var new_bullet: Node2D = bullet_scene.instantiate()
-	new_bullet.position = $Player.position
+	new_bullet.position = $Player/Gun.global_position
+	new_bullet.position.y -= 10
 	new_bullet.z_index = 0
 	new_bullet.name += String.num_int64((get_children()).size())
 	new_bullet.transform = new_bullet.transform.rotated_local(acos(trajectory.x) * sign(trajectory.y))
@@ -79,7 +80,8 @@ func _process(delta: float) -> void:
 	bullets = bullets.filter(func(dict: Dictionary):
 		var encloses = viewport.encloses(dict["bullet"].get_viewport_rect())
 		if not encloses:
-			remove_child(dict["bullet"])
+			var bullet := dict["bullet"] as Node2D
+			bullet.queue_free()
 		return encloses)
 
 
@@ -99,29 +101,44 @@ func update_gun_position():
 
 func update_mob_positions(delta: float):
 	var player_position := $Player.position as Vector2
-	var directions := global_mobs.map(func(mob):
+	var directions := global_mobs.map(func(dict):
+		var mob := dict["Node2D"] as Node2D
 		return (player_position - mob.position).normalized() as Vector2
 		)
 
-	const speeds = {
-		"Barnacle":barnacle_mob_speed,
-		"Bee":bee_mob_speed,
-		"Mouse":mouse_mob_speed
-	}
-
 	for i in range(global_mobs.size()):
-		var key = global_mobs[i].name.get_slice("Mob", 0)
+		var mob := global_mobs[i]["Node2D"] as Node2D
+		mob.get_node("AnimatedSprite2D").flip_h = directions[i].x > 0
+		var mob_name := global_mobs[i]["name"] as String
+		var speed = mouse_mob_speed \
+		if mob_name.contains("Mouse") else (\
+			barnacle_mob_speed if mob_name.contains("Barnacle") else bee_mob_speed)
+		mob.position += (speed * directions[i] * delta) as Vector2
 
-		global_mobs[i].get_child(0).flip_h = directions[i].x > 0
-
-		global_mobs[i].position += (speeds[key] * directions[i] * delta) as Vector2
+func on_mob_hit(mob_hit: Node2D, area: Area2D):
+	var bullets_areas2d = bullets.map(func(dict: Dictionary):
+		return dict["bullet"].get_node("Area2D"))
+	var bullet_indx = bullets_areas2d.find(area)
+	if bullet_indx != -1:
+		var bullet = bullets[bullet_indx]["bullet"] as Node2D
+		bullet.queue_free()
+		mob_hit.queue_free()
+		global_mobs = global_mobs.filter(func(dict):
+			return dict["Node2D"] != mob_hit)
+		bullets = bullets.filter(func(dict: Dictionary):
+			return dict["bullet"].get_node("Area2D") != area)
 
 func _on_mob_mob_spawn() -> void:
-	var mobs := [bee_mob, barnacle_mob, mouse_mob] as Array[PackedScene]
+	var mobs := [barnacle_mob, mouse_mob, bee_mob] as Array[PackedScene]
 	var mob_scene: PackedScene = mobs.pick_random()
-	var mob = mob_scene.instantiate()
+	var mob: Node2D = mob_scene.instantiate()
 
-	global_mobs.append(mob)
+	mob.z_index = 1
+
+	var area2d := mob.get_node("Area2D") as Area2D
+	area2d.area_entered.connect(func(area): on_mob_hit(mob, area))
+
+	global_mobs.append({ "Node2D": mob, "name": mob.name })
 
 	var mob_spawn_location = $MobPath/MobSpawnLocation
 
@@ -129,9 +146,7 @@ func _on_mob_mob_spawn() -> void:
 
 	mob.position = mob_spawn_location.position
 
-	#get_child(0) is AnimatedSprite2D
-	mob.get_child(0).play()
-	#adding a number here because if I add it without a unique name, godot will rename it to something weird
-	mob.name = mob.name + String.num_int64(global_mobs.size())
+	mob.get_node("AnimatedSprite2D").play()
+
 	add_child(mob)
 	mob.show()
