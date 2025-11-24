@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://vgt4nl4c4rd3"]
+[gd_scene load_steps=6 format=3 uid="uid://vgt4nl4c4rd3"]
 
 [ext_resource type="Texture2D" uid="uid://pdqnyp4o167k" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_a.png" id="1_f5yy0"]
 [ext_resource type="Texture2D" uid="uid://bfqdu1hbjcglv" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_b.png" id="2_kbc4w"]
 [ext_resource type="Texture2D" uid="uid://c5ho4yq2ocbb5" path="res://assets/platform_pack/Sprites/Enemies/Default/barnacle_attack_rest.png" id="3_wig3h"]
+[ext_resource type="PackedScene" uid="uid://i15fqwxa27un" path="res://health_bar_container.tscn" id="4_kbc4w"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1i423"]
 animations = [{
@@ -34,3 +35,6 @@ frame_progress = 0.41500804
 position = Vector2(1, -2)
 scale = Vector2(1.6, 1)
 polygon = PackedVector2Array(-8.125, -23, 6.875, -23, 13.75, -19, 16.875, 34, -17.5, 34, -14.375, -17)
+
+[node name="HealthBarContainer" parent="." instance=ExtResource("4_kbc4w")]
+position = Vector2(0, 41)

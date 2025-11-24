@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://ch3pacbmgwmkw"]
+[gd_scene load_steps=6 format=3 uid="uid://ch3pacbmgwmkw"]
 
 [ext_resource type="Texture2D" uid="uid://cvxdv3u4srwub" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_rest.png" id="1_fdya6"]
 [ext_resource type="Texture2D" uid="uid://dco2lr8cfgt7a" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_a.png" id="2_7jv6g"]
 [ext_resource type="Texture2D" uid="uid://dfvgy03o7x3mv" path="res://assets/platform_pack/Sprites/Enemies/Default/mouse_walk_b.png" id="3_dope2"]
+[ext_resource type="PackedScene" uid="uid://i15fqwxa27un" path="res://health_bar_container.tscn" id="4_7jv6g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2gqlo"]
 animations = [{
@@ -32,3 +33,6 @@ frame_progress = 0.0608903
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(32, 0, 24, 32, -24, 32, -32, 16, -8, -16)
+
+[node name="HealthBarContainer" parent="." instance=ExtResource("4_7jv6g")]
+position = Vector2(0, 42.000004)

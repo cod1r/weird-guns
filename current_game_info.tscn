@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c2e3upk8cer6a"]
+
+[node name="CurrentGameInfo" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1500.0
+offset_bottom = 64.0
+
+[node name="PlayerHealth" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(2, 2)
+text = "Player Health:"

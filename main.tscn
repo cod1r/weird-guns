@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://cb3jhkkvnuse7"]
+[gd_scene load_steps=15 format=4 uid="uid://cb3jhkkvnuse7"]
 
 [ext_resource type="Script" uid="uid://cdsutw6mxfdix" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://t082opexjfou" path="res://tile_map_layer.tscn" id="1_ig7tw"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://c6ib7qo5ay6fu" path="res://bee_mob.tscn" id="4_kek77"]
 [ext_resource type="PackedScene" uid="uid://c55k6rfm8wxj5" path="res://bullet.tscn" id="5_kek77"]
 [ext_resource type="PackedScene" uid="uid://dxmd1uw2bum0h" path="res://gun.tscn" id="8_5vw27"]
+[ext_resource type="AudioStream" uid="uid://1kw1wqk1ykmp" path="res://assets/platform_pack/Sounds/sfx_bump.ogg" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://cltvy8jk8puvm" path="res://end_screen.tscn" id="11_efxa6"]
+[ext_resource type="PackedScene" uid="uid://c2e3upk8cer6a" path="res://current_game_info.tscn" id="12_dg77c"]
 
 [sub_resource type="GDScript" id="GDScript_kek77"]
 script/source = "extends Sprite2D
@@ -33,8 +36,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAFAAAAAAAAAAEAAAAFAAAAAAAAAAIAAAAFAAA
 [node name="Mob" parent="." instance=ExtResource("3_1bvp3")]
 
 [node name="Player" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(90, 57)
-scale = Vector2(0.75, 0.75)
+position = Vector2(264, 128)
 
 [node name="Gun" parent="Player" instance=ExtResource("8_5vw27")]
 position = Vector2(-120, -76)
@@ -42,7 +44,7 @@ scale = Vector2(2, 2)
 script = SubResource("GDScript_kek77")
 
 [node name="PlayerPosition" type="Marker2D" parent="."]
-position = Vector2(416, 384)
+position = Vector2(736, 544)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_1bvp3")
@@ -50,5 +52,12 @@ curve = SubResource("Curve2D_1bvp3")
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
 position = Vector2(1500, 0)
 rotation = 1.5707964
+
+[node name="GunSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_4c57u")
+
+[node name="EndScreen" parent="." instance=ExtResource("11_efxa6")]
+
+[node name="CurrentGameInfo" parent="." instance=ExtResource("12_dg77c")]
 
 [connection signal="mob_spawn" from="Mob" to="." method="_on_mob_mob_spawn"]

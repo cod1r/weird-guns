@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cltvy8jk8puvm"]
+
+[node name="EndScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_top = 584.0
+offset_right = 376.0
+offset_bottom = 652.0
+scale = Vector2(4, 4)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 374.0
+offset_bottom = 34.0
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Restart" type="Button" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 30.0
+offset_right = 230.0
+offset_bottom = 48.0
+text = "Restart"
